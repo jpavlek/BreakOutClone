@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E2552667-DE1C-4C97-A764-16C7E8A38E5C}</ProjectGuid>
+    <RootNamespace>BreakOutClone</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Work\BreakOutClone\SDL2_image-2.0.1\include;C:\Work\BreakOutClone\SDL2-2.0.4\include;C:\Work\BreakOutClone\SDL2_ttf-2.0.14\include;C:\Work\BreakOutClone\SDL2_mixer-2.0.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Work\BreakOutClone\SDL2_image-2.0.1\lib\x86;C:\Work\BreakOutClone\SDL2-2.0.4\lib\x86;C:\Work\BreakOutClone\SDL2_ttf-2.0.14\lib\x86;C:\Work\BreakOutClone\SDL2_mixer-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Resources\Images\Paddle.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\TinyXML\tinystr.cpp" />
+    <ClCompile Include="..\..\TinyXML\tinyxml.cpp" />
+    <ClCompile Include="..\..\TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="..\..\TinyXML\tinyxmlparser.cpp" />
+    <ClCompile Include="Code\Collision\DoubleRect.cpp" />
+    <ClCompile Include="Code\Collision\QuadTree.cpp" />
+    <ClCompile Include="Code\Collision\TreeNode.cpp" />
+    <ClCompile Include="Code\Entities\Ball.cpp" />
+    <ClCompile Include="Code\Entities\BallDescription.cpp" />
+    <ClCompile Include="Code\Entities\Brick.cpp" />
+    <ClCompile Include="Code\Entities\BrickType.cpp" />
+    <ClCompile Include="Code\Entities\BrickWall.cpp" />
+    <ClCompile Include="Code\Entities\Entity.cpp" />
+    <ClCompile Include="Code\Entities\EntityDescription.cpp" />
+    <ClCompile Include="Code\Entities\Paddle.cpp" />
+    <ClCompile Include="Code\Entities\PaddleDescription.cpp" />
+    <ClCompile Include="Code\Game\Game.cpp" />
+    <ClCompile Include="Code\Game\PlayerProfile.cpp" />
+    <ClCompile Include="Code\Graphics\FontDescription.cpp" />
+    <ClCompile Include="Code\Graphics\Graphics.cpp" />
+    <ClCompile Include="Code\Graphics\SDLGraphics.cpp" />
+    <ClCompile Include="Code\Graphics\TextureDescription.cpp" />
+    <ClCompile Include="Code\Graphics\TextureManager.cpp" />
+    <ClCompile Include="Code\InputEvents\InputEventHandler.cpp" />
+    <ClCompile Include="Code\InputEvents\SDLInputEventHandler.cpp" />
+    <ClCompile Include="Code\Main.cpp" />
+    <ClCompile Include="Code\ResourceManager\AudioDescription.cpp" />
+    <ClCompile Include="Code\ResourceManager\AudioManager.cpp" />
+    <ClCompile Include="Code\ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="Code\Timer\Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\TinyXML\tinystr.h" />
+    <ClInclude Include="..\..\TinyXML\tinyxml.h" />
+    <ClInclude Include="Code\Collision\DoubleRect.h" />
+    <ClInclude Include="Code\Collision\QuadTree.h" />
+    <ClInclude Include="Code\Collision\TreeNode.h" />
+    <ClInclude Include="Code\Entities\Ball.h" />
+    <ClInclude Include="Code\Entities\BallDescription.h" />
+    <ClInclude Include="Code\Entities\Brick.h" />
+    <ClInclude Include="Code\Entities\BrickType.h" />
+    <ClInclude Include="Code\Entities\BrickWall.h" />
+    <ClInclude Include="Code\Entities\Direction.h" />
+    <ClInclude Include="Code\Entities\Entity.h" />
+    <ClInclude Include="Code\Entities\EntityDescription.h" />
+    <ClInclude Include="Code\Entities\Paddle.h" />
+    <ClInclude Include="Code\Entities\PaddleDescription.h" />
+    <ClInclude Include="Code\Game\Game.h" />
+    <ClInclude Include="Code\Game\PlayerProfile.h" />
+    <ClInclude Include="Code\Graphics\FontDescription.h" />
+    <ClInclude Include="Code\Graphics\Graphics.h" />
+    <ClInclude Include="Code\Graphics\GraphicsProperties.h" />
+    <ClInclude Include="Code\Graphics\SDLGraphics.h" />
+    <ClInclude Include="Code\Graphics\TextureDescription.h" />
+    <ClInclude Include="Code\Graphics\TextureManager.h" />
+    <ClInclude Include="Code\InputEvents\InputEventHandler.h" />
+    <ClInclude Include="Code\InputEvents\SDLInputEventHandler.h" />
+    <ClInclude Include="Code\Main.h" />
+    <ClInclude Include="Code\ResourceManager\AudioDescription.h" />
+    <ClInclude Include="Code\ResourceManager\AudioManager.h" />
+    <ClInclude Include="Code\ResourceManager\ResourceManager.h" />
+    <ClInclude Include="Code\Timer\Timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\Ball2.png" />
+    <Image Include="Resources\Images\BrickHard.bmp" />
+    <Image Include="Resources\Images\BrickImpenetrable.bmp" />
+    <Image Include="Resources\Images\BrickMedium.bmp" />
+    <Image Include="Resources\Images\BrickSoft.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

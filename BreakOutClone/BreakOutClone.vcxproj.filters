@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\TinyXml">
+      <UniqueIdentifier>{a2483ee4-950f-4c27-b7e0-94951d8f10ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TinyXml">
+      <UniqueIdentifier>{74edca51-b3f9-40b7-8242-726c458ddedc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{5985055d-096e-413b-a4c7-665442c6583e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{db6ad60d-d1d1-49c8-aac6-3aed6b3c74c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{31a4de0d-7d85-44f3-bc2a-1dc7899654ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Ball">
+      <UniqueIdentifier>{974e3792-4092-4100-a498-fba0e1f618aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Paddle">
+      <UniqueIdentifier>{60b1a82d-17f1-4a49-841d-550b5847888f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Brick">
+      <UniqueIdentifier>{3799ff75-0124-49b6-bfed-5346bb8f63a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Ball">
+      <UniqueIdentifier>{dffac7c2-1d9b-4552-b7ea-607e59bb6c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Brick">
+      <UniqueIdentifier>{8d069806-4df0-4402-aab1-fa5a86519200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Paddle">
+      <UniqueIdentifier>{f96e572d-035d-47eb-be51-f73675ee14ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Collision">
+      <UniqueIdentifier>{16f5da16-58c9-426b-829b-b2197bc0c67f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Collision">
+      <UniqueIdentifier>{c7f8042c-5e49-4313-a960-4d66f3dc48e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{562bc81b-5704-4563-b3bd-8513d7c5b582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{aa450f93-0d65-4c27-b459-907549027ea5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{ed0544d7-9e2b-4266-8389-044f443ebeff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{ebc634bd-3834-4df6-b976-17492c48e24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\InputEvents">
+      <UniqueIdentifier>{3c6258ab-0868-4790-9d4e-41df39b88f2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputEvents">
+      <UniqueIdentifier>{a6a6b6b1-ab1f-49a0-a634-2b49e4ea0913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ResourceManager">
+      <UniqueIdentifier>{31258a0c-27cc-45df-a8b7-ae0951fc8745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ResourceManager">
+      <UniqueIdentifier>{9ccca808-d9bb-433f-b119-fc95bcd031d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Timer">
+      <UniqueIdentifier>{b754e918-327c-4dfc-b6f2-cc278c1dfa4f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Resources\Images\Paddle.bmp">
+      <Filter>Resource Files\Images</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Code\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TinyXML\tinystr.cpp">
+      <Filter>Source Files\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TinyXML\tinyxmlparser.cpp">
+      <Filter>Source Files\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TinyXML\tinyxml.cpp">
+      <Filter>Source Files\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TinyXML\tinyxmlerror.cpp">
+      <Filter>Source Files\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\Entity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\Brick.cpp">
+      <Filter>Source Files\Entities\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\Paddle.cpp">
+      <Filter>Source Files\Entities\Paddle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\BrickWall.cpp">
+      <Filter>Source Files\Entities\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Collision\QuadTree.cpp">
+      <Filter>Source Files\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Graphics\SDLGraphics.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\EntityDescription.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\BallDescription.cpp">
+      <Filter>Source Files\Entities\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\PaddleDescription.cpp">
+      <Filter>Source Files\Entities\Paddle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Graphics\TextureManager.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\BrickType.cpp">
+      <Filter>Source Files\Entities\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Game\Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Graphics\Graphics.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\InputEvents\InputEventHandler.cpp">
+      <Filter>Source Files\InputEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\InputEvents\SDLInputEventHandler.cpp">
+      <Filter>Source Files\InputEvents</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ResourceManager\ResourceManager.cpp">
+      <Filter>Source Files\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Timer\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Graphics\TextureDescription.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Collision\DoubleRect.cpp">
+      <Filter>Source Files\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Collision\TreeNode.cpp">
+      <Filter>Source Files\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Game\PlayerProfile.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Entities\Ball.cpp">
+      <Filter>Source Files\Entities\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Graphics\FontDescription.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ResourceManager\AudioManager.cpp">
+      <Filter>Source Files\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ResourceManager\AudioDescription.cpp">
+      <Filter>Source Files\ResourceManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\TinyXML\tinystr.h">
+      <Filter>Header Files\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\TinyXML\tinyxml.h">
+      <Filter>Header Files\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\Entity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\Direction.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\Ball.h">
+      <Filter>Header Files\Entities\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\Paddle.h">
+      <Filter>Header Files\Entities\Paddle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\Brick.h">
+      <Filter>Header Files\Entities\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\BrickWall.h">
+      <Filter>Header Files\Entities\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Collision\QuadTree.h">
+      <Filter>Header Files\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\SDLGraphics.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\GraphicsProperties.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\EntityDescription.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\BallDescription.h">
+      <Filter>Header Files\Entities\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\PaddleDescription.h">
+      <Filter>Header Files\Entities\Paddle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\TextureManager.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Entities\BrickType.h">
+      <Filter>Header Files\Entities\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Game\Game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\Graphics.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\InputEvents\InputEventHandler.h">
+      <Filter>Header Files\InputEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\InputEvents\SDLInputEventHandler.h">
+      <Filter>Header Files\InputEvents</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ResourceManager\ResourceManager.h">
+      <Filter>Header Files\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Timer\Timer.h">
+      <Filter>Header Files\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\TextureDescription.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Collision\DoubleRect.h">
+      <Filter>Header Files\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Collision\TreeNode.h">
+      <Filter>Header Files\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Game\PlayerProfile.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\FontDescription.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ResourceManager\AudioManager.h">
+      <Filter>Header Files\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ResourceManager\AudioDescription.h">
+      <Filter>Header Files\ResourceManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Images\Ball2.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Resources\Images\BrickHard.bmp">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Resources\Images\BrickImpenetrable.bmp">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Resources\Images\BrickMedium.bmp">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="Resources\Images\BrickSoft.bmp">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
