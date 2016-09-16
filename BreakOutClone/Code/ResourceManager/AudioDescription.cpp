@@ -6,7 +6,9 @@ AudioDescription::AudioDescription(Mix_Chunk* sfx, long sfxId)
 {
 }
 //-------------------------------------------------------------------------------------------
-AudioDescription::AudioDescription()
+AudioDescription::AudioDescription():
+	soundEffect_(0),
+	soundEffectId_(0)
 {
 }
 //-------------------------------------------------------------------------------------------

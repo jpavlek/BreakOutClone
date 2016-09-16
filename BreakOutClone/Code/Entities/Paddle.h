@@ -11,6 +11,7 @@ public:
 	Paddle(int x, int y, int w, int h);
 	Paddle(PaddleDescription* paddleDesc);
 	void move();
+	void update() override;
 	void increasePosX(int deltaX) { position_.x += deltaX; }
 	void increasePosY(int deltaY) { position_.y += deltaY; }
 	bool checkWallCollision(Entity* entity, Direction dir);

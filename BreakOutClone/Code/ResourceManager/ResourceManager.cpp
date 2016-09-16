@@ -55,6 +55,9 @@ ResourceManager::addSoundEffect(std::string fullPathSFXFileName)
 {
 	sfxCount_++;
 	bool sfxLoaded = audioManager_->loadSoundEffect(fullPathSFXFileName, sfxCount_);
+	if (!sfxLoaded) {
+		printf("Failed to add sound effect \'%s\' to resource manager! SDL_mixer Error: %s\n", fullPathSFXFileName.c_str(), Mix_GetError());
+	}
 	return sfxCount_;
 }
 //-------------------------------------------------------------------------------------------

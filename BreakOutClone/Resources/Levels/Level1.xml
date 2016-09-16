@@ -1,9 +1,16 @@
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/bit-network.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/purple-flow.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/summer.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/yellow-cells.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/world-collision.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/treasure.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/sunburst-purple.jpg">-->
 <Level
-RowCount="30"
-ColumnCount="20"
+RowCount="7"
+ColumnCount="32"
 RowSpacing="3"
 ColumnSpacing="3"
-BackgroundTexture="Textures/Boards/Board_01.dds">
+BackgroundTexture="Resources/Images/Backgrounds/Abstract/purple-flow.jpg">
 
 	<BrickTypes>
 
@@ -49,11 +56,9 @@ BackgroundTexture="Textures/Boards/Board_01.dds">
 	</BrickTypes>
 
 	<Bricks>
-HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-MSMSISISMSMSMSMSMSMSMSMSMSMSMSMSISISMSM
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+I_H_H_H_H_H_H_H_H_H_H_H_H_H_H_I_
+H_M_M_M_M_M_M_M_M_M_M_M_M_M_M_H_
+S_S_S_S_S_S_S_S_S_S_S_S_S_S_S_S_
 	</Bricks>
 
 </Level>

@@ -12,7 +12,7 @@ AudioManager::loadSoundEffect(std::string fullPathFileName, long id)
 		return true;
 	}
 
-	printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
+	printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError());
 	return false;
 }
 //-------------------------------------------------------------------------------------------

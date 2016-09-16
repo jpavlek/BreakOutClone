@@ -14,6 +14,7 @@ Paddle::Paddle(int x, int y, int w, int h)
 {
 	entityName_ = "Paddle";
 }
+//-------------------------------------------------------------------------------------------
 Paddle::Paddle(PaddleDescription* paddleDesc)
 	: Entity("Paddle", paddleDesc->positionX_, paddleDesc->positionY_, paddleDesc->width_, paddleDesc->height_, paddleDesc->velocityX_, paddleDesc->velocityY_, paddleDesc->textureId_, paddleDesc->texture_)
 {
@@ -27,23 +28,16 @@ Paddle::setMaxVelocityLeft()
 {
 	velX(-MAX_VEL_X);
 }
+//-------------------------------------------------------------------------------------------
 void
 Paddle::setMaxVelocityRight()
 {
 	velX(MAX_VEL_X);
 }
+//-------------------------------------------------------------------------------------------
 void
 Paddle::move() 
 {
-	// If the ball is moving left, we see if it hits the wall. If does, //
-	// we change its direction. We do the same thing if it's moving right. //
-	/*
-	if ( ( (velX_ < 0) && checkWallCollision( (Entity*) this, LEFT) ) || ( (velX_ > 0) && checkWallCollision( (Entity*) this, RIGHT) ) )
-	{
-		velX_ = -velX_;
-		velX_ = 0;
-	}
-	*/
 	increasePosX(velX_);
 	velX_ = 0;
 }
@@ -130,4 +124,8 @@ Paddle::decreaseVelX()
 	}
 }
 //-------------------------------------------------------------------------------------------
+void
+Paddle::update()
+{
+}
 //-------------------------------------------------------------------------------------------

@@ -1,10 +1,9 @@
-#pragma once
-
 #include "Ball.h"
 #include "..\Graphics\GraphicsProperties.h"
 #include <SDL.h>
 #include <algorithm>
 #include "..\Game\Game.h"
+
 
 //-------------------------------------------------------------------------------------------
 Ball::Ball():
@@ -36,7 +35,7 @@ Ball::setInitialConditions(int posX, int posY, int velX, int velY)
 }
 //-------------------------------------------------------------------------------------------
 void
-Ball::move(/*Entity* paddle*/) 
+Ball::move() 
 {
 	increasePosX(velX_);
 	increasePosY(velY_);
@@ -161,15 +160,23 @@ Ball::handlePaddleCollision(Paddle* paddle)
 		int distanceXFromPaddleCenter = ball_center - paddle_center;
 
 		// Increase X speed according to distance from center of paddle. //
-		resolvePaddleCollision(distanceXFromPaddleCenter);
+		resolvePaddleCollision(distanceXFromPaddleCenter, paddle->width());
 	}
 }
 //-------------------------------------------------------------------------------------------
 void
-Ball::resolvePaddleCollision(int distanceXFromPaddleCenter)
+Ball::resolvePaddleCollision(int distanceXFromPaddleCenter, int paddleWidth)
 {
-	velX(distanceXFromPaddleCenter / BALL_SPEED_MODIFIER);
+	//hit on the paddle corner
+	if ( ( paddleWidth / 2 - abs(distanceXFromPaddleCenter) <= 2) && (distanceXFromPaddleCenter*velX() < 0) ) {
+		velX(-velX());
+	}
+
+	//just bounce up
 	velY(-velY());
+	//modify direction and speed
+	//velX(distanceXFromPaddleCenter / BALL_SPEED_MODIFIER);
+	
 }
 //-------------------------------------------------------------------------------------------
 bool
@@ -185,16 +192,40 @@ Ball::checkBrickWallCollision(BrickWall* brickWall)
 void
 Ball::resolveBrickWallCollision(std::vector<Entity*> &ent)
 {
+	int maxContactPosY = 0;
+	std::map<int, int> axisMap;
 	for (size_t i = 0; i < ent.size(); i++) {
 		Brick* brick = dynamic_cast<Brick*>(ent[i]);
 		bool collidedWithBrick = checkBrickCollision(brick);
 		if (!collidedWithBrick) {
 			continue;
 		}
-		resolveBrickCollision(brick);
 
+		int axisAffected = resolveBrickCollision(brick);
+		std::map<int, int>::const_iterator it = axisMap.find(axisAffected);
+		if (it != axisMap.end()) {
+			axisMap[axisAffected]++;
+		} else {
+			axisMap[axisAffected] = 1;
+		}
 		brick->onBrickHit();
+		if (axisAffected == 2) {
+			break;
+		}
 	}
+	std::map<int, int>::const_iterator it = axisMap.find(0);
+	if (it != axisMap.end()) {
+		if (axisMap[0] % 2 == 0) {
+			velX(-velX_);
+		}
+	}
+	it = axisMap.find(1);
+	if (it != axisMap.end()) {
+		if (axisMap[1] % 2 == 0) {
+			velY(-velY_);
+		}
+	}
+
 }
 //-------------------------------------------------------------------------------------------
 bool
@@ -206,11 +237,11 @@ Ball::checkBrickCollision(Brick* brick)
 	return false;
 }
 //-------------------------------------------------------------------------------------------
-void
+int
 Ball::resolveBrickCollision(Brick* brick)
 {
 	if (brick == 0) {
-		return;
+		return -1;
 	}
 	int xMin = std::max(posX(), brick->posX());
 	int xMax = std::min(posX() + width(), brick->posX() + brick->width());
@@ -220,14 +251,48 @@ Ball::resolveBrickCollision(Brick* brick)
 	int collisionSegmentY = yMax - yMin;
 	if (collisionSegmentX > collisionSegmentY) {
 		velY(-velY());
+		return 1;
 	}
 	else if (collisionSegmentX < collisionSegmentY) {
 		velX(-velX());
+		return 0;
 	}
 	else {
 		velY(-velY());
 		velX(-velX());
+		return 2;
 	}
 }
 //-------------------------------------------------------------------------------------------
+void
+Ball::update()
+{
+	move();
+	handleWallCollisions();
+	handlePaddleCollision( owner_->paddle() );
+	if (checkBrickWallCollision( owner_->getBrickwall() ) ) {
+		QuadTree* quadTree = owner_->getQuadTree();
+		TreeNode* ballCollisionLocNode = quadTree->locateEntityPositionInQuadTree(this);
+		owner_->setBallCollisionLocationNode(ballCollisionLocNode);
+		if (ballCollisionLocNode == 0) {
+			return;
+		}
+		std::vector<Entity*> ent = ballCollisionLocNode->retrieveEntities();
+		std::sort(ent.begin(), ent.end());
+		if (ent.size() > 0) {
+			resolveBrickWallCollision(ent);
+			PlayerProfile* playerProfile = owner_->playerProfile();
+			playerProfile->updateScore(ent);
+			owner_->updateHUD();
+			owner_->checkForDestroyedBricks();
+			bool levelFinished = owner_->checkLevelFinished();
+			if (levelFinished) {
+				owner_->setGameState(GameState::NEXT_LEVEL);
+			}
+		}
+	}
+	else {
+		owner_->setBallCollisionLocationNode(0);
+	}
+}
 //-------------------------------------------------------------------------------------------

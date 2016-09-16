@@ -17,6 +17,8 @@ public:
 	Ball(int x, int y, int diameter, int velX, int velY, long textureId, SDL_Texture* sdlTexture);
 	Ball(BallDescription* ballDesc);
 	Ball(int x, int y, int diameter);
+	virtual ~Ball();
+
 	void setOwner(Game* owner) { owner_ = owner; }
 	void move();
 	void increasePosX(int deltaX) { position_.x += deltaX; }
@@ -29,17 +31,14 @@ public:
 	
 	void handlePaddleCollision(Paddle* paddle);
 	bool checkPaddleCollision(Paddle* paddle);
-	void resolvePaddleCollision(int distanceXFromPaddleCenter);
+	void resolvePaddleCollision(int distanceXFromPaddleCenter, int paddleWidth);
 	
 	bool checkBrickWallCollision(BrickWall* brickWall);
 	bool checkBrickCollision(Brick* brick);
 	void resolveBrickWallCollision(std::vector<Entity*> &ent);
-	void resolveBrickCollision(Brick* brick);
-	
+	int resolveBrickCollision(Brick* brick);
+	void update() override;
 	void setDiameter(int diameter);
-	virtual ~Ball();
-	//int min(int a, int b);
-	//int max(int a, int b);
 private:
 	int diameter_{ 0 };
 	Game* owner_{ 0 };

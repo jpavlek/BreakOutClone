@@ -11,9 +11,9 @@
 #include "..\Entities\BrickWall.h"
 #include "..\Entities\Entity.h"
 #include <vector>
+#include <algorithm>
 
 #define SDL_GRAPHICS 1
-
 //-------------------------------------------------------------------------------------------
 Game::Game()
 	: timer_( new Timer() ),
@@ -46,6 +46,7 @@ Game::~Game()
 	delete ball_;
 	delete livesText_;
 	delete scoreText_;
+	delete background_;
 	delete inputHandler_;
 	delete resourceManager_;
 	delete graphics_;	
@@ -80,6 +81,7 @@ void
 Game::clean()
 {
 	//Cleaning game components in reverse order from init
+	gameObjects_.clear();
 
 	bool mediaUnloaded = false;
 	bool graphicsClosed = false;
@@ -96,18 +98,17 @@ Game::render() {
 	SDLGraphics* sdlGraphics = dynamic_cast<SDLGraphics*> (graphics_);
 	SDL_Renderer* sdlRenderer = sdlGraphics->sdlRenderer();
 	SDL_RenderClear(sdlRenderer); // clear the renderer to the draw color
-	ball_->render(sdlRenderer);
-	paddle_->render(sdlRenderer);
-	brickWall_->render(sdlRenderer);
-	/*quadTree_->render(sdlRenderer);
+	
+	for (size_t i = 0; i < gameObjects_.size(); i++) {
+		Entity* object = gameObjects_[i];
+		if (object == 0) {
+			continue;
+		}
+		object->render(sdlRenderer);
+	}
+	quadTree_->render(sdlRenderer);
 	if (ballCollisionLocationNode_) {
 		ballCollisionLocationNode_->debugRender(sdlRenderer, 255, 0, 0, 255);
-	}*/
-	if (livesText_) {
-		livesText_->render(sdlRenderer);
-	}
-	if (scoreText_) {
-		scoreText_->render(sdlRenderer);
 	}
 	SDL_RenderPresent(sdlRenderer); // draw to the screen 
 }
@@ -150,13 +151,19 @@ Game::initEntities() {
 	livesTextureDesc_ = createTextureFromRenderedTextThroughResourceManager("Lives: " + std::to_string(playerProfile_->lives()), fontDescription_.fontId_, textColor_);
 	scoreTextureDesc_ = createTextureFromRenderedTextThroughResourceManager("Score: " + std::to_string(playerProfile_->score()), fontDescription_.fontId_, textColor_);
 	
-	livesText_ = new Brick( 500, 420, 120, 15, 0, "", "", "", 0, 0, livesTextureDesc_.textureId_, livesTextureDesc_.texture_, 0, 0 );
-	scoreText_ = new Brick(  20, 420, 120, 15, 0, "", "", "", 0, 0, scoreTextureDesc_.textureId_, scoreTextureDesc_.texture_, 0, 0 );
+	livesText_ = new Entity("Lives", 500, 420, 120, 15, 0, 0, livesTextureDesc_.textureId_, livesTextureDesc_.texture_);
+	scoreText_ = new Entity("Score", 20, 420, 120, 15, 0, 0, scoreTextureDesc_.textureId_, scoreTextureDesc_.texture_);
 
 	SDL_Rect quadTreeBoundaries = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	quadTree_ = new QuadTree(quadTreeBoundaries, 4);
-
 	loadLevel(level_);
+	addGameObject(background_);
+	addGameObject(ball_);
+	addGameObject(paddle_);
+	addGameObject(brickWall_);
+	addGameObject(livesText_);
+	addGameObject(scoreText_);
+
 }
 //-------------------------------------------------------------------------------------------
 void
@@ -166,7 +173,14 @@ Game::update()
 	{
 	case (GameState::GAME_PLAY):
 		//paddle_->move();
-		ball_->move();
+		//ball_->move();
+		for (size_t i = 0; i < gameObjects_.size(); i++) {
+			Entity* object = gameObjects_[i];
+			if (object == 0) {
+				continue;
+			}
+			object->update();
+		}
 		handleCollisions();
 		break;
 	case (GameState::WAIT_TO_START):
@@ -252,7 +266,9 @@ Game::loadLevel(int level) {
 		pElem->QueryIntAttribute("ColumnCount", &columns);
 		pElem->QueryIntAttribute("RowSpacing", &rowSpacing);
 		pElem->QueryIntAttribute("ColumnSpacing", &columnSpacing);
-		const char* texturePathName = pElem->Attribute("BackgroundTexture");
+		const char* texturePathName = readStringAttribute(pElem, "BackgroundTexture");
+		TextureDescription backgroundTextureDesc = createTextureThroughResourceManager(texturePathName);
+		background_ = new Entity("Background", 0, 0, 640, 480, 0, 0, backgroundTextureDesc.textureId_, backgroundTextureDesc.texture_);
 	}
 
 	TiXmlElement* pBrickTypesElem = hRoot.FirstChild("BrickTypes").Element();
@@ -265,20 +281,14 @@ Game::loadLevel(int level) {
 	int counter = 0;
 	for (pElem; pElem; pElem = pElem->NextSiblingElement()) {
 		const char *pKey = pElem->Value();
-		const char* id = pElem->Attribute("Id");
+		const char* id = readStringAttribute(pElem, "Id");
 		char idChar = id[0];
-		const char* texturePathName = pElem->Attribute("Texture");
-
+		const char* texturePathName = readStringAttribute(pElem, "Texture");
 		int hitPoints = 0;
 		pElem->QueryIntAttribute("HitPoints", &hitPoints);
-		const char* hitSoundPath = pElem->Attribute("HitSound");
-		const char* breakSoundPath = pElem->Attribute("BreakSound");
-		if (hitSoundPath == 0) {
-			hitSoundPath = "";
-		}
-		if (breakSoundPath == 0) {
-			breakSoundPath = "";
-		}
+		const char* hitSoundPath = readStringAttribute(pElem, "HitSound");
+		const char* breakSoundPath = readStringAttribute(pElem, "BreakSound");
+		
 		int breakScore = 0;
 		pElem->QueryIntAttribute("BreakScore", &breakScore);
 		
@@ -299,7 +309,7 @@ Game::loadLevel(int level) {
 		const char* brickWall = text->Value();
 		std::string brickWallString = brickWall;
 
-		int offsetX = 0;
+		int offsetX = -1;
 		int brickCounter = -1;
 		int miss = 0;
 		SDL_Texture* brickTexture = NULL;
@@ -312,7 +322,7 @@ Game::loadLevel(int level) {
 			char brickTypeId = brickWall[i];
 			switch (brickTypeId)
 			{
-			case ' ':
+			case '_':
 				offsetX++;
 				continue;
 				break;
@@ -327,14 +337,12 @@ Game::loadLevel(int level) {
 				offsetX++;
 				brickCounter++;
 				brickTexture = brickTypesMap_[brickTypeId].texture_;
-				brickTexture = brickTypesMap_[brickTypeId].texture_;
 				brickHitSound = brickTypesMap_[brickTypeId].hitSound.soundEffect_;
 				brickBrokenSound = brickTypesMap_[brickTypeId].breakSound.soundEffect_;
 				break;
 			case 'S':
 				offsetX++;
 				brickCounter++;
-				brickTexture = brickTypesMap_[brickTypeId].texture_;
 				brickTexture = brickTypesMap_[brickTypeId].texture_;
 				brickHitSound = brickTypesMap_[brickTypeId].hitSound.soundEffect_;
 				brickBrokenSound = brickTypesMap_[brickTypeId].breakSound.soundEffect_;
@@ -343,7 +351,6 @@ Game::loadLevel(int level) {
 				offsetX++;
 				brickCounter++;
 				brickTexture = brickTypesMap_[brickTypeId].texture_;
-				brickTexture = brickTypesMap_[brickTypeId].texture_;
 				brickBrokenSound = brickTypesMap_[brickTypeId].breakSound.soundEffect_;
 				break;
 			default:
@@ -351,8 +358,11 @@ Game::loadLevel(int level) {
 				continue;
 				break;
 			}
-			int x = (offsetX % (2 * columns)) * BRICK_WIDTH;
-			int y = (offsetX / (2 * columns)) * BRICK_HEIGHT;
+			/*if (brickTypeId == '_') {
+				continue;
+			}*/
+			int x = ( offsetX % columns ) * BRICK_WIDTH;
+			int y = ( offsetX / columns ) * BRICK_HEIGHT;
 			int w = BRICK_WIDTH;
 			int h = BRICK_HEIGHT;
 			if (x < wallBoundaries.x || wallBoundaries.x < 0) {
@@ -379,6 +389,7 @@ Game::loadLevel(int level) {
 			Brick* brick = new Brick(x, y, BRICK_WIDTH, BRICK_HEIGHT, brickTypeId, txtureName, hitSndName, breakSndName, hitPnts, breakScr, brickTypesMap_[brickTypeId].textureId_, brickTexture, brickHitSound, brickBrokenSound);
 			bricks_[brickCounter] = brick;
 		}
+		printf("Number of brick rows: %d\n", miss);
 		bricks_.resize(brickCounter + 1);
 		brickWall_ = new BrickWall(bricks_, wallBoundaries, destroyableBricks);
 		quadTree_->insertBricks(bricks_);
@@ -434,7 +445,7 @@ Game::createSoundEffectThroughResourceManager(std::string fullPathSFXFileName)
 	Mix_Chunk* sfx = resourceManager_->getSoundEffect(sfxId);
 
 	if (sfx == 0) {
-		printf("Failed to load the font! SDL_ttf Error: %s\n", TTF_GetError());
+		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
 
 	return AudioDescription(sfx, sfxId);
@@ -442,31 +453,7 @@ Game::createSoundEffectThroughResourceManager(std::string fullPathSFXFileName)
 //-------------------------------------------------------------------------------------------
 void
 Game::handleCollisions()
-{
-	ball_->handleWallCollisions();
-	ball_->handlePaddleCollision(paddle_);	
-
-	if (ball_->checkBrickWallCollision(brickWall_)) {
-		ballCollisionLocationNode_ = quadTree_->locateEntityPositionInQuadTree(ball_);
-		if (ballCollisionLocationNode_ == 0) {
-			return;
-		}
-		std::vector<Entity*> ent = ballCollisionLocationNode_->retrieveEntities();
-		if ( ent.size() > 0 ) {
-			ball_->resolveBrickWallCollision(ent);
-			playerProfile_->updateScore(ent);
-			updateHUD();
-			checkForDestroyedBricks();
-			bool levelFinished = checkLevelFinished();
-			if (levelFinished) {
-				setGameState(GameState::NEXT_LEVEL);
-			}
-		}
-	}
-	else {
-		ballCollisionLocationNode_ = 0;
-	}
-	
+{	
 }
 //-------------------------------------------------------------------------------------------
 void
@@ -557,6 +544,44 @@ Game::checkLevelFinished()
 		return false;
 	}
 	return true;
+}
+//-------------------------------------------------------------------------------------------
+void
+Game::addGameObject(Entity* entity)
+{
+	gameObjects_.push_back(entity);
+}
+//-------------------------------------------------------------------------------------------
+void
+Game::removeGameObject(Entity* entity)
+{
+	std::vector<Entity*>::iterator it = gameObjects_.begin();
+	it = std::find(gameObjects_.begin(), gameObjects_.end(), entity);
+	int nPosition = std::distance(gameObjects_.begin(), it);
+	if (nPosition > 0) {
+		gameObjects_.erase(gameObjects_.begin() + nPosition);
+	}
+}
+//-------------------------------------------------------------------------------------------
+void
+Game::clearGameObjects()
+{
+	gameObjects_.clear();
+}
+//-------------------------------------------------------------------------------------------
+// Substitutes TinyXML* Attribute(const char* attributeName) method in order to support reading strings better
+// replaces: const char* breakSoundPath = pElem->Attribute("BreakSound");
+// with:	 const char* breakSoundPath = readStringAttribute(pElem, "BreakSound");
+// returns empty string "" if nothing found.
+const char*
+Game::readStringAttribute(TiXmlElement* pElem, const char* elementName)
+{
+	const char* finalResult = "";
+	const char* readResult = pElem->Attribute(elementName);
+	if (readResult != 0) {
+		return readResult;
+	}
+	return finalResult;
 }
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------

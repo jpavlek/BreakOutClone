@@ -40,6 +40,8 @@ public:
 	void setSDLTexture(SDL_Texture* imageTexture) { texture_ = imageTexture; }
 	virtual void render(SDL_Renderer* sdlRenderer);
 	virtual bool intersectsRectangle(Entity* entity);
+	virtual void update();
+	bool operator < (const Entity& entity) const;
 protected:
 	
 	//data member defaults

@@ -3,6 +3,7 @@
 #include "..\InputEvents\InputEventHandler.h"
 #include "..\Graphics\Graphics.h"
 #include "..\Graphics\SDLGraphics.h"
+#include "..\Entities\Entity.h"
 #include "..\Entities\Paddle.h"
 #include "..\Entities\Ball.h"
 #include "..\ResourceManager\ResourceManager.h"
@@ -14,6 +15,7 @@
 #include "..\Entities\BrickWall.h"
 #include "..\Collision\QuadTree.h"
 #include "PlayerProfile.h"
+#include "..\..\..\..\TinyXML\tinyxml.h"
 
 enum class GameState
 {
@@ -34,9 +36,15 @@ public:
 	
 	// getters
 	bool running() { return running_; }
-	ResourceManager* resourceManager() { return resourceManager_; }
-	Paddle* paddle() { return paddle_; }
-	Ball* ball() { return ball_; }
+	ResourceManager*	resourceManager() { return resourceManager_; }
+	Paddle*				paddle() { return paddle_; }
+	Ball*				ball() { return ball_; }
+	BrickWall*			getBrickwall() { return brickWall_; }
+	QuadTree*			getQuadTree() { return quadTree_; }
+	PlayerProfile*		getPlayerProfile() { return playerProfile_; }
+
+	//setters
+	void setBallCollisionLocationNode(TreeNode* collisionNode) { ballCollisionLocationNode_ = collisionNode; }
 
 	void init();	
 	void initEntities();
@@ -64,11 +72,16 @@ public:
 	void nextLevel();
 	void clearLevel();
 	bool checkLevelFinished();
+	void addGameObject(Entity* entity);
+	void removeGameObject(Entity* entity);
+	void clearGameObjects();
+	const char* readStringAttribute(TiXmlElement* pElem, const char* elementName);
 private:
 	bool running_{ false };
 	Graphics* graphics_{ 0 };
 	InputEventHandler* inputHandler_{ 0 };
 	ResourceManager* resourceManager_{ 0 };
+	Entity* background_{ 0 };
 	Paddle* paddle_{ 0 };
 	Ball* ball_{ 0 };
 	Timer* timer_{ 0 };
@@ -79,14 +92,15 @@ private:
 	TreeNode* ballCollisionLocationNode_{ 0 };
 	PlayerProfile* playerProfile_{ 0 };
 	GameState gameState_{ GameState::WAIT_TO_START };
-	Brick* livesText_{ 0 };
-	Brick* scoreText_{ 0 };
+	Entity* livesText_{ 0 };
+	Entity* scoreText_{ 0 };
 	FontDescription fontDescription_{ 0, 0 };
 	TextureDescription livesTextureDesc_{ 0, 0 };
 	TextureDescription scoreTextureDesc_{ 0, 0 };
 	SDL_Color textColor_{ 0, 0, 0, 0 };
 	std::map<long, Mix_Chunk*> soundEffectsMap_;
 	int level_{ 1 };
-	int maxLevel_{ 3 };
+	int maxLevel_{ 4 };
+	std::vector<Entity*> gameObjects_;
 };
 

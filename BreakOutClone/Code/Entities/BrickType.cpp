@@ -1,5 +1,5 @@
 #include "BrickType.h"
-
+#include <iostream>
 //-------------------------------------------------------------------------------------------
 BrickType::BrickType(char brickId, const char* textureName, int hitPts, const char* hitSoundName, const char* breakSoundName, int breakScr, SDL_Texture* texture, long textureID, AudioDescription hitSoundDesc, AudioDescription breakSoundDesc)
 	:id_(brickId),
@@ -13,6 +13,12 @@ BrickType::BrickType(char brickId, const char* textureName, int hitPts, const ch
 	hitSound(hitSoundDesc),
 	breakSound(breakSoundDesc)
 {
+	if (hitSound.soundEffect_ == 0) {
+		printf("No hit sound effect for BrickType id=\'%c\'.\n", id_);
+	}
+	if (breakSound.soundEffect_ == 0) {
+		printf("No break sound effect for BrickType id=\'%c\'.\n", id_);
+	}
 }
 //-------------------------------------------------------------------------------------------
 BrickType::BrickType() 

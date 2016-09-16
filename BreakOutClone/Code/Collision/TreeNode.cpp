@@ -85,21 +85,16 @@ TreeNode::insertEntity(Entity* entity)
 
 	if (contains(subNodes_[0], entity)) {
 		subNodes_[0]->insertEntity(entity);
-		return;
 	} else if (contains(subNodes_[1], entity)) {
 		subNodes_[1]->insertEntity(entity);
-		return;
 	} else if (contains(subNodes_[2], entity)) {
 		subNodes_[2]->insertEntity(entity);
-		return;
 	} else if (contains(subNodes_[3], entity)) {
 		subNodes_[3]->insertEntity(entity);
-		return;
-	}
-	
-	if (contains(this, entity)) {
+	} else if (contains(this, entity)) {
 		objects_.push_back(entity);
 	}
+	return;
 }
 //-------------------------------------------------------------------------------------------
 TreeNode*
@@ -130,7 +125,7 @@ TreeNode::checkForDestroyedElements()
 	if (objects_.size() > 0) {
 		for (int i = objects_.size()-1; i >=0; i--) {
 			Brick* brick = dynamic_cast<Brick*>(objects_[i]);
-			if (brick->pointsLeft() <= 0) {
+			if (brick->pointsLeft() <= 0 && brick->id() != 'I') {
 				objects_.erase(objects_.begin() + i);
 			}
 		}
