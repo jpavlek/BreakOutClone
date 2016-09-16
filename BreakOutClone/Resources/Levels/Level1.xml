@@ -1,7 +1,4 @@
-<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/bit-network.jpg">-->
-<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/purple-flow.jpg">-->
 <!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/summer.jpg">-->
-<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/yellow-cells.jpg">-->
 <!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/world-collision.jpg">-->
 <!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/treasure.jpg">-->
 <!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/sunburst-purple.jpg">-->
@@ -15,7 +12,6 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/purple-flow.jpg">
 	<BrickTypes>
 
 		<!-- Soft Brick -->
-		<!--Texture="Textures/Bricks/Soft.dds" -->
 		<BrickType
 			Id="S"
 			Texture="Resources/Images/BrickSoft.bmp"
@@ -26,7 +22,6 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/purple-flow.jpg">
 		/>
 
 		<!-- Medium Brick -->
-		<!-- Texture="Textures/Bricks/Medium.dds" -->
 		<BrickType
 		Id="M"
 		Texture="Resources/Images/BrickMedium.bmp"
@@ -36,7 +31,6 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/purple-flow.jpg">
 		BreakScore="100" />
 
 		<!-- Hard Brick -->
-		<!-- Texture="Textures/Bricks/Hard.dds" -->
 		<BrickType
 		Id="H"
 		
@@ -47,7 +41,6 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/purple-flow.jpg">
 		BreakScore="150" />
 
 		<!-- Impenetrable Brick -->
-		<!-- Texture="Textures/Bricks/Impenetrable.dds" -->
 		<BrickType
 		Id="I"
 		Texture="Resources/Images/BrickImpenetrable.bmp"

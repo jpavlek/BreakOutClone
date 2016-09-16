@@ -99,8 +99,8 @@ private:
 	TextureDescription scoreTextureDesc_{ 0, 0 };
 	SDL_Color textColor_{ 0, 0, 0, 0 };
 	std::map<long, Mix_Chunk*> soundEffectsMap_;
-	int level_{ 1 };
-	int maxLevel_{ 4 };
+	int level_{ 0 };
+	int maxLevel_{ 5 };
 	std::vector<Entity*> gameObjects_;
 };
 

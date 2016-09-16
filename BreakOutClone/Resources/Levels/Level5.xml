@@ -1,9 +1,9 @@
 <Level
-RowCount="11"
+RowCount="5"
 ColumnCount="32"
 RowSpacing="3"
 ColumnSpacing="3"
-BackgroundTexture="Resources/Images/Backgrounds/Abstract/summer.jpg">
+BackgroundTexture="Resources/Images/Backgrounds/Abstract/sunburst-purple.jpg">
 	<BrickTypes>
 
 		<!-- Soft Brick -->
@@ -43,18 +43,13 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/summer.jpg">
 		HitSound="Resources/Sounds/Hit_04.wav" />
 	</BrickTypes>
 
+
 	<Bricks>
-IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHI
-HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHI
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMI
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMI
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSI
-SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSI
-_______________________________I
-_______________________________I
-_______________________________I
-____IIIIIIIIIIIIIIIIIIIIIIIIIIII
+I_H_H_H_H_H_H_H_H_H_H_H_H_H_H_I_
+H_M_I_M_M_M_M_M_M_M_M_M_M_I_M_M_
+H_M_S_S_S_S_S_S_S_S_S_S_S_S_M_H_
+H_M_I_M_M_M_M_M_M_M_M_M_M_I_M_H_
+I_H_H_H_H_H_H_H_H_H_H_H_H_H_H_I_
 	</Bricks>
 
 </Level>

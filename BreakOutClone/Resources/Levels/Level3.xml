@@ -11,8 +11,8 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/yellow-cells.jpg">
 			Id="S"
 			Texture="Resources/Images/BrickSoft.bmp"
 			HitPoints="1"
-			HitSound="Sounds/Hit_01.wav"
-			BreakSound="Sounds/Break_01.wav"
+			HitSound="Resources/Sounds/Hit_01.wav"
+			BreakSound="Resources/Sounds/Break_01.wav"
 			BreakScore="50" 
 		/>
 
@@ -21,8 +21,8 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/yellow-cells.jpg">
 		Id="M"
 		Texture="Resources/Images/BrickMedium.bmp"
 		HitPoints="2"
-		HitSound="Sounds/Hit_02.wav"
-		BreakSound="Sounds/Break_02.wav"
+		HitSound="Resources/Sounds/Hit_02.wav"
+		BreakSound="Resources/Sounds/Break_02.wav"
 		BreakScore="100" />
 
 		<!-- Hard Brick -->
@@ -31,8 +31,8 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/yellow-cells.jpg">
 		
 		Texture="Resources/Images/BrickHard.bmp"
 		HitPoints="3"
-		HitSound="Sounds/Hit_03.wav"
-		BreakSound="Sounds/Break_03.wav"
+		HitSound="Resources/Sounds/Hit_03.wav"
+		BreakSound="Resources/Sounds/Break_03.wav"
 		BreakScore="150" />
 
 		<!-- Impenetrable Brick -->
@@ -40,14 +40,14 @@ BackgroundTexture="Resources/Images/Backgrounds/Abstract/yellow-cells.jpg">
 		Id="I"
 		Texture="Resources/Images/BrickImpenetrable.bmp"
 		HitPoints="Infinite"
-		HitSound="Sounds/Hit_04.wav" />
+		HitSound="Resources/Sounds/Hit_04.wav" />
 	</BrickTypes>
 
 	<Bricks>
 I_H_H_H_H_H_H_H_H_H_H_H_H_H_H_I_
-H_I_M_M_M_M_M_M_M_M_M_M_M_M_I_M_
+H_M_I_M_M_M_M_M_M_M_M_M_M_I_M_M_
 H_M_S_S_S_S_S_S_S_S_S_S_S_S_M_H_
-H_I_M_M_M_M_M_M_M_M_M_M_M_M_I_H_
+H_M_I_M_M_M_M_M_M_M_M_M_M_I_M_H_
 I_H_H_H_H_H_H_H_H_H_H_H_H_H_H_I_
 	</Bricks>
 

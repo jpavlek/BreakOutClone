@@ -15,8 +15,9 @@
 
 #define SDL_GRAPHICS 1
 //-------------------------------------------------------------------------------------------
-Game::Game()
-	: timer_( new Timer() ),
+Game::Game():
+	level_(1),
+	timer_( new Timer() ),
 	playerProfile_( new PlayerProfile(0, 3) ),
 #ifdef SDL_GRAPHICS
 	graphics_( new SDLGraphics() ),

@@ -267,6 +267,7 @@ Ball::resolveBrickCollision(Brick* brick)
 void
 Ball::update()
 {
+	SDL_Rect position = position_;
 	move();
 	handleWallCollisions();
 	handlePaddleCollision( owner_->paddle() );
@@ -294,5 +295,8 @@ Ball::update()
 	else {
 		owner_->setBallCollisionLocationNode(0);
 	}
+	pos(position.x, position.y);
+	move();
+
 }
 //-------------------------------------------------------------------------------------------

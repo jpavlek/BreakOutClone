@@ -3,7 +3,8 @@ RowCount="8"
 ColumnCount="32"
 RowSpacing="3"
 ColumnSpacing="3"
-BackgroundTexture="Resources/Images/Backgrounds/Abstract/summer.jpg">
+
+BackgroundTexture="Resources/Images/Backgrounds/Abstract/world-collision.jpg">
 
 	<BrickTypes>
 
