@@ -37,9 +37,14 @@ bool
 TextureManager::loadTextureFromRenderedText(std::string textureText, long fontId, long textureId, SDL_Color textColor, SDL_Renderer* pRenderer)
 {
 	//Render text surface
-	TTF_Font* font = getFont(fontId);
-	SDL_Surface* textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);
+	TTF_Font* font = 0;
+	font = getFont(fontId);
+	if (font == 0) {
+		return false;
+	}
 	SDL_Texture* pTexture = 0;
+	SDL_Surface* textSurface = 0;
+	textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);
 	if (textSurface == 0) {
 		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
 	} else {

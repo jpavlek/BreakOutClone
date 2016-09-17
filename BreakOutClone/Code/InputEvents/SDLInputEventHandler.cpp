@@ -31,6 +31,8 @@ SDLInputEventHandler::handleInputEvents() {
 			//Select surfaces based on key press
 			switch (sdl_event.key.keysym.sym) {
 			case SDLK_UP:
+				//cheat: next level
+				game()->setGameState(GameState::NEXT_LEVEL);
 				break;
 
 			case SDLK_DOWN:

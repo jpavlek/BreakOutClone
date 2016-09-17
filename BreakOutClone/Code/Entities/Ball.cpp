@@ -7,11 +7,11 @@
 
 //-------------------------------------------------------------------------------------------
 Ball::Ball():
-	Entity() {
+	Entity("Ball") {
 }
 //-------------------------------------------------------------------------------------------
 Ball::Ball(int x, int y, int diameter):
-	Entity(x, y, diameter, diameter) {
+	Entity("Ball", x, y, diameter, diameter) {
 }
 //-------------------------------------------------------------------------------------------
 Ball::Ball(int x, int y, int diameter, int velX, int velY, long textureId, SDL_Texture* sdlTexture):
@@ -182,11 +182,10 @@ Ball::resolvePaddleCollision(int distanceXFromPaddleCenter, int paddleWidth)
 bool
 Ball::checkBrickWallCollision(BrickWall* brickWall)
 {
-	if ( !intersectsRectangle(brickWall) ) {
-		return false;
+	if (brickWall && intersectsRectangle(brickWall) ) {
+		return true;
 	}
-
-	return true;
+	return false;
 }
 //-------------------------------------------------------------------------------------------
 void
@@ -258,8 +257,36 @@ Ball::resolveBrickCollision(Brick* brick)
 		return 0;
 	}
 	else {
-		velY(-velY());
-		velX(-velX());
+		//no collision, touching corners
+		if (collisionSegmentX == 0) {
+			return -1;
+		}
+		
+		int relPosition = relativePosition(brick);
+		if (relPosition == 0 || relPosition == 6) {
+			if (velX() < 0) {
+				velX(-velX_);
+			}
+		}
+
+		if (relPosition == 2 || relPosition == 8) {
+			if (velX() > 0) {
+				velX(-velX_);
+			}
+		}
+		
+		if (relPosition == 0 || relPosition == 2) {
+			if (velY() < 0) {
+				velY(-velY_);
+			}
+		}
+
+		if (relPosition == 6 || relPosition == 8) {
+			if (velY() > 0) {
+				velY(-velY_);
+			}
+		}
+
 		return 2;
 	}
 }

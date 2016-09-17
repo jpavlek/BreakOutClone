@@ -25,9 +25,6 @@
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{db6ad60d-d1d1-49c8-aac6-3aed6b3c74c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Images">
-      <UniqueIdentifier>{31a4de0d-7d85-44f3-bc2a-1dc7899654ef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Entities\Ball">
       <UniqueIdentifier>{974e3792-4092-4100-a498-fba0e1f618aa}</UniqueIdentifier>
     </Filter>
@@ -82,9 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
-    <None Include="Resources\Images\Paddle.bmp">
-      <Filter>Resource Files\Images</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Main.cpp">
@@ -269,22 +263,5 @@
     <ClInclude Include="Code\ResourceManager\AudioDescription.h">
       <Filter>Header Files\ResourceManager</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Images\Ball2.png">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <Image Include="Resources\Images\BrickHard.bmp">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <Image Include="Resources\Images\BrickImpenetrable.bmp">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <Image Include="Resources\Images\BrickMedium.bmp">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
-    <Image Include="Resources\Images\BrickSoft.bmp">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
   </ItemGroup>
 </Project>

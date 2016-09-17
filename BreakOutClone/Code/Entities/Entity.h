@@ -8,7 +8,7 @@ public:
 	//ctors
 	Entity();
 	Entity(char* entityName);
-	Entity(int x, int y, int w, int h);
+	Entity(char* entityName, int x, int y, int w, int h);
 	Entity(char* entityName, int x, int y, int w, int h, int velX, int velY, long textureId, SDL_Texture* texture);
 	//Entity(const Entity& refEntity);
 	//dtor
@@ -42,6 +42,7 @@ public:
 	virtual bool intersectsRectangle(Entity* entity);
 	virtual void update();
 	bool operator < (const Entity& entity) const;
+	int relativePosition(Entity* ent);
 protected:
 	
 	//data member defaults

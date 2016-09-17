@@ -76,6 +76,7 @@ public:
 	void removeGameObject(Entity* entity);
 	void clearGameObjects();
 	const char* readStringAttribute(TiXmlElement* pElem, const char* elementName);
+	void replaceGameObject(Entity* newEntity);
 private:
 	bool running_{ false };
 	Graphics* graphics_{ 0 };

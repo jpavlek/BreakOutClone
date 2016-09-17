@@ -174,7 +174,6 @@ Game::update()
 	{
 	case (GameState::GAME_PLAY):
 		//paddle_->move();
-		//ball_->move();
 		for (size_t i = 0; i < gameObjects_.size(); i++) {
 			Entity* object = gameObjects_[i];
 			if (object == 0) {
@@ -187,8 +186,8 @@ Game::update()
 	case (GameState::WAIT_TO_START):
 		ball_->setInitialConditions((SCREEN_WIDTH - BALL_DIAMETER) / 2, (SCREEN_HEIGHT - BALL_DIAMETER) / 2, BALL_SPEED, BALL_SPEED);
 		ball_->setDiameter(BALL_DIAMETER);
-		setGameState(GameState::GAME_PLAY);
 		SDL_Delay(1000);
+		setGameState(GameState::GAME_PLAY);
 		break;
 	case (GameState::LIFE_LOST):
 		onLifeLost();
@@ -269,6 +268,8 @@ Game::loadLevel(int level) {
 		pElem->QueryIntAttribute("ColumnSpacing", &columnSpacing);
 		const char* texturePathName = readStringAttribute(pElem, "BackgroundTexture");
 		TextureDescription backgroundTextureDesc = createTextureThroughResourceManager(texturePathName);
+		delete background_;
+		background_ = 0;
 		background_ = new Entity("Background", 0, 0, 640, 480, 0, 0, backgroundTextureDesc.textureId_, backgroundTextureDesc.texture_);
 	}
 
@@ -352,6 +353,7 @@ Game::loadLevel(int level) {
 				offsetX++;
 				brickCounter++;
 				brickTexture = brickTypesMap_[brickTypeId].texture_;
+				brickHitSound = brickTypesMap_[brickTypeId].hitSound.soundEffect_;
 				brickBrokenSound = brickTypesMap_[brickTypeId].breakSound.soundEffect_;
 				break;
 			default:
@@ -395,6 +397,7 @@ Game::loadLevel(int level) {
 		brickWall_ = new BrickWall(bricks_, wallBoundaries, destroyableBricks);
 		quadTree_->insertBricks(bricks_);
 	}
+
 }
 //-------------------------------------------------------------------------------------------
 TextureDescription
@@ -517,9 +520,16 @@ void
 Game::nextLevel()
 {
 	level_++;
-	if (level_ < maxLevel_) {
+	if (level_ <= maxLevel_) {
 		clearLevel();
 		loadLevel(level_);
+		addGameObject(background_);
+		addGameObject(ball_);
+		addGameObject(paddle_);
+		addGameObject(brickWall_);
+		addGameObject(livesText_);
+		addGameObject(scoreText_);
+		setGameState(GameState::WAIT_TO_START);
 	} else {
 		setGameState(GameState::GAME_WON);
 	}
@@ -531,10 +541,15 @@ Game::clearLevel()
 	quadTree_->clear();
 	delete brickWall_;
 	brickWall_ = 0;
-	for (int i = bricks_.size() - 1; i > 0; i--) {
+	for (int i = bricks_.size() - 1; i >= 0; i--) {
 		delete bricks_[i];
 		bricks_[i] = 0;
 		bricks_.erase(bricks_.begin() + i);
+	}
+	gameObjects_.clear();
+	
+	for (auto it = brickTypesMap_.begin(); it != brickTypesMap_.end(); ) {
+		brickTypesMap_.erase(it++);
 	}
 }
 //-------------------------------------------------------------------------------------------
@@ -585,4 +600,21 @@ Game::readStringAttribute(TiXmlElement* pElem, const char* elementName)
 	return finalResult;
 }
 //-------------------------------------------------------------------------------------------
+void
+Game::replaceGameObject(Entity* newEntity)
+{
+	bool replaced = false;
+	for (size_t i = 0; i < gameObjects_.size(); i++) {
+		Entity* oldObject = gameObjects_[i];
+		if (oldObject->entityName() == newEntity->entityName()) {
+			gameObjects_.erase(gameObjects_.begin() + i);
+			gameObjects_.insert(gameObjects_.begin() + i, newEntity);
+			replaced = true;
+			break;
+		}
+	}
+	if (!replaced) {
+		gameObjects_.push_back(newEntity);
+	}
+}
 //-------------------------------------------------------------------------------------------

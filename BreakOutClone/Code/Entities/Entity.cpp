@@ -11,8 +11,8 @@ Entity::Entity(char* entityName):
 {
 }
 //-------------------------------------------------------------------------------------------
-Entity::Entity(int x, int y, int w, int h)
-	: Entity("EntityName", x, y, w, h, 0, 0, 0L, NULL)
+Entity::Entity(char* entityName, int x, int y, int w, int h)
+	: Entity(entityName, x, y, w, h, 0, 0, 0L, NULL)
 {
 }
 //-------------------------------------------------------------------------------------------
@@ -81,4 +81,38 @@ Entity::update()
 {
 }
 //-------------------------------------------------------------------------------------------
+// Returns rough relative positon of the ent object relative to the object on which the method is called.
+// 0 1 2
+// 3 4 5
+// 6 7 8
+// 0 = NW, 1 = N, 2 = NE, 3 = W, 4 = CENTER, 5 = E, 6 = SW, 7 = S, 8 = SE
+int
+Entity::relativePosition(Entity* ent)
+{
+	int centerX = (position_.x + position_.w) / 2;
+	int centerY = (position_.y + position_.h) / 2;
+
+	int entCenterX = (ent->posX() + ent->width()) / 2;
+	int entCenterY = (ent->posY() + ent->height()) / 2;
+
+	int relativePosX = entCenterX - centerX;
+	int relativePosY = entCenterY - centerY;
+	int x = 0;
+	if (relativePosX > 0) {
+		x = 2;
+	}
+	else if (relativePosX == 0) {
+		x = 1;
+	}
+
+	int y = 0;
+	if (relativePosY > 0) {
+		y = 2;
+	} else if (relativePosY == 0) {
+		y = 1;
+	}
+	
+	int result = 3 * x + y;
+	return result;
+}
 //-------------------------------------------------------------------------------------------

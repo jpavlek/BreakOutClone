@@ -3,7 +3,7 @@
 
 //-------------------------------------------------------------------------------------------
 BrickWall::BrickWall(std::vector<Brick*> wall, SDL_Rect wallBoundaries, int destroyableBricks):
-	Entity(wallBoundaries.x, wallBoundaries.y, wallBoundaries.w, wallBoundaries.h),
+	Entity("BrickWall", wallBoundaries.x, wallBoundaries.y, wallBoundaries.w, wallBoundaries.h),
 	bricks_(wall),
 	boundaries_(wallBoundaries),
 	destroyableBricks_(destroyableBricks)

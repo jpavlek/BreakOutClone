@@ -4,15 +4,14 @@
 #include "../Graphics/GraphicsProperties.h"
 
 //-------------------------------------------------------------------------------------------
-Paddle::Paddle(): Entity()
+Paddle::Paddle():
+	Entity("Paddle")
 {
-	entityName_ = "Paddle";
 }
 //-------------------------------------------------------------------------------------------
 Paddle::Paddle(int x, int y, int w, int h)
-	: Entity(x, y, w, h)
+	: Entity("Paddle", x, y, w, h)
 {
-	entityName_ = "Paddle";
 }
 //-------------------------------------------------------------------------------------------
 Paddle::Paddle(PaddleDescription* paddleDesc)
