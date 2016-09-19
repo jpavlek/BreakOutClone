@@ -93,15 +93,14 @@ Ball::handleWallCollisions()
 	// we change its direction. We do the same thing if it's moving right. //
 	if (((velX_ < 0) && checkWallCollision((Entity*) this, LEFT)) || ((velX_ > 0) && checkWallCollision((Entity*) this, RIGHT))) {
 		velX_ = -velX_;
-	}
-
-	if ( (velY_ < 0) && checkWallCollision((Entity*) this, UP) ) {
+		playSoundEffect(1, owner_->resourceManager()->audioManager());
+	} else if ( (velY_ < 0) && checkWallCollision((Entity*) this, UP) ) {
 		velY_ = -velY_;
-	}
-
-	if ( (velY_ > 0) && checkWallCollision((Entity*) this, DOWN) ) {
+		playSoundEffect(1, owner_->resourceManager()->audioManager());
+	} else if ( (velY_ > 0) && checkWallCollision((Entity*) this, DOWN) ) {
 		owner_->onLifeLost();
 		velY_ = -velY_;
+		return;
 	}
 }
 //-------------------------------------------------------------------------------------------
@@ -174,6 +173,7 @@ Ball::resolvePaddleCollision(int distanceXFromPaddleCenter, int paddleWidth)
 
 	//just bounce up
 	velY(-velY());
+	playSoundEffect(3, owner_->resourceManager()->audioManager());
 	//modify direction and speed
 	//velX(distanceXFromPaddleCenter / BALL_SPEED_MODIFIER);
 	

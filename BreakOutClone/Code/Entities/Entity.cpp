@@ -26,15 +26,6 @@ Entity::Entity(char* entityName, int x, int y, int w, int h, int velX, int velY,
 {
 }
 //-------------------------------------------------------------------------------------------
-//Copy constructor not needed, default shallow copy constructor used instead for better reusing of SDL surfaces, SDL surface resources deleted in main() function
-//TODO: Delete copy constructor
-//Entity::Entity(const Entity& refEntity)
-//	: Entity(refEntity.position.x, refEntity.position.y, refEntity.position.w, refEntity.position.h, refEntity.velX(), refEntity.velY(), NULL)
-//{
-//	texture = new SDL_Surface();
-//	*texture = *refEntity.getTexture();
-//}
-//-------------------------------------------------------------------------------------------
 void
 Entity::members()
 {
@@ -51,8 +42,8 @@ Entity::render(SDL_Renderer* sdlRenderer) {
 	TextureManager::Instance()->render(textureId_, position_.x, position_.y, position_.w, position_.h, sdlRenderer);
 }
 //-------------------------------------------------------------------------------------------
-//The same applies for destructor, no need to delete texture, dynamic resources are dealocated in main()
 Entity::~Entity() {
+	//No need to delete texture here, dynamic resources are dealocated through resource manager
 }
 //-------------------------------------------------------------------------------------------
 bool
@@ -115,4 +106,13 @@ Entity::relativePosition(Entity* ent)
 	int result = 3 * x + y;
 	return result;
 }
+//-------------------------------------------------------------------------------------------
+void
+Entity::playSoundEffect(long soundEffectId, AudioManager* audioManager) {
+	if (audioManager == nullptr) {
+		return;
+	}
+	audioManager->playSoundEffect(soundEffectId);
+}
+//-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------

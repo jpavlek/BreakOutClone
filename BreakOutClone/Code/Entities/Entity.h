@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <string>
+#include "..\ResourceManager\AudioManager.h"
 
 class Entity {
 public:
@@ -10,7 +11,6 @@ public:
 	Entity(char* entityName);
 	Entity(char* entityName, int x, int y, int w, int h);
 	Entity(char* entityName, int x, int y, int w, int h, int velX, int velY, long textureId, SDL_Texture* texture);
-	//Entity(const Entity& refEntity);
 	//dtor
 	virtual ~Entity();
 	//getters
@@ -43,6 +43,7 @@ public:
 	virtual void update();
 	bool operator < (const Entity& entity) const;
 	int relativePosition(Entity* ent);
+	virtual void playSoundEffect(long soundEffectId, AudioManager* audioManager);
 protected:
 	
 	//data member defaults

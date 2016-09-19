@@ -1,0 +1,68 @@
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/summer.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/world-collision.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/treasure.jpg">-->
+<!--BackgroundTexture="Resources/Images/Backgrounds/Abstract/sunburst-purple.jpg">-->
+<Level
+RowCount="14"
+ColumnCount="32"
+RowSpacing="3"
+ColumnSpacing="3"
+BackgroundTexture="Resources/Images/Backgrounds/Landscape/mountain.jpg">
+
+	<BrickTypes>
+
+		<!-- Soft Brick -->
+		<BrickType
+			Id="S"
+			Texture="Resources/Images/BrickSoft.bmp"
+			HitPoints="1"
+			HitSound="Resources/Sounds/Hit_01.wav"
+			BreakSound="Resources/Sounds/Break_01.wav"
+			BreakScore="50" 
+		/>
+
+		<!-- Medium Brick -->
+		<BrickType
+		Id="M"
+		Texture="Resources/Images/BrickMedium.bmp"
+		HitPoints="2"
+		HitSound="Resources/Sounds/Hit_02.wav"
+		BreakSound="Resources/Sounds/Break_02.wav"
+		BreakScore="100" />
+
+		<!-- Hard Brick -->
+		<BrickType
+		Id="H"
+		
+		Texture="Resources/Images/BrickHard.bmp"
+		HitPoints="3"
+		HitSound="Resources/Sounds/Hit_03.wav"
+		BreakSound="Resources/Sounds/Break_03.wav"
+		BreakScore="150" />
+
+		<!-- Impenetrable Brick -->
+		<BrickType
+		Id="I"
+		Texture="Resources/Images/BrickImpenetrable.bmp"
+		HitPoints="Infinite"
+		HitSound="Resources/Sounds/Hit_04.wav" />
+	</BrickTypes>
+
+	<Bricks>
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+HHMMMMHHMMMMHHMMMMHHMMMMHHMMMMHH
+HHSSSSHHSSSSHHSSSSHHSSSSHHSSSSHH
+HHMMMMHHMMMMHHMMMMHHMMMMHHMMMMHH
+HHSSSSHHSSSSHHSSSSHHSSSSHHSSSSHH
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+HH____HH____HH____HH____HH____HH
+HH____HH____HH____HH____HH____HH
+HH____HH____HH____HH____HH____HH
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+HHMMMMHHMMMMHHMMMMHHMMMMHHMMMMHH
+HHSSSSHHSSSSHHSSSSHHSSSSHHSSSSHH
+HHMMMMHHMMMMHHMMMMHHMMMMHHMMMMHH
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+	</Bricks>
+
+</Level>
