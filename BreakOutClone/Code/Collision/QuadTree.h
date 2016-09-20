@@ -20,8 +20,8 @@ public:
 	void render(SDL_Renderer* sdlRenderer);
 	void clear();
 private:
-	SDL_Rect* bounds_{ 0 };
-	TreeNode* root_{ 0 };
+	SDL_Rect* bounds_{ nullptr };
+	TreeNode* root_{ nullptr };
 	int maxDepth_{ 0 };
 	int depth_{ 0 };
 };

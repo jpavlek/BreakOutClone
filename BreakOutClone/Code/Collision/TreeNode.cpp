@@ -2,18 +2,18 @@
 #include "QuadTree.h"
 
 //-------------------------------------------------------------------------------------------
-TreeNode::TreeNode()
-:	quadTree_(0), 
+TreeNode::TreeNode():
+	quadTree_(nullptr), 
 	bounds_( {0, 0, 0, 0} ),
 	depth_(0),
-	parentNode_(0),
+	parentNode_(nullptr),
 	isLeaf_(true)
 {
 	boundsNormalized_ = new DoubleRect(0.0, 0.0, 0.0, 0.0);
 }
 //-------------------------------------------------------------------------------------------
-TreeNode::TreeNode(const SDL_Rect &bounds, QuadTree* owner, int depth, TreeNode* parentNode)
-:	quadTree_(owner),
+TreeNode::TreeNode(const SDL_Rect &bounds, QuadTree* owner, int depth, TreeNode* parentNode):
+	quadTree_(owner),
 	bounds_( {bounds.x, bounds.y, bounds.w, bounds.h} ),
 	depth_(depth),
 	parentNode_(parentNode),
@@ -27,8 +27,6 @@ TreeNode::TreeNode(const SDL_Rect &bounds, QuadTree* owner, int depth, TreeNode*
 	for (size_t i = 0; i < QUAD; i++) {
 		subNodes_.push_back(0);
 	}
-
-	int a = 0;
 }
 //-------------------------------------------------------------------------------------------
 TreeNode::~TreeNode()
@@ -43,7 +41,7 @@ TreeNode::~TreeNode()
 bool 
 TreeNode::contains(TreeNode* subQuad, Entity* object)
 {
-	if (subQuad == 0) {
+	if (subQuad == nullptr) {
 		return false;
 	}
 
@@ -79,7 +77,7 @@ TreeNode::insertEntity(Entity* entity)
 		return;
 	}
 
-	if (subNodes_[0] == 0 || subNodes_[1] == 0 || subNodes_[2] == 0 || subNodes_[3] == 0) {
+	if (subNodes_[0] == nullptr || subNodes_[1] == nullptr || subNodes_[2] == nullptr || subNodes_[3] == nullptr) {
 		split();
 	}
 
@@ -116,7 +114,7 @@ TreeNode::locateEntityPositionInQuadTree(Entity* entity)
 		return this;
 	}
 
-	return 0;
+	return nullptr;
 }
 //-------------------------------------------------------------------------------------------
 void

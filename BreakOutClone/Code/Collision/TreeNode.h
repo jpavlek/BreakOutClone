@@ -31,14 +31,14 @@ public:
 private:
 	//structure
 	int depth_{ 0 };
-	QuadTree* quadTree_{ 0 };
-	TreeNode* parentNode_{ 0 };
+	QuadTree* quadTree_{ nullptr };
+	TreeNode* parentNode_{ nullptr };
 	std::vector<TreeNode*> subNodes_;
 	bool isLeaf_;
 	
 	//access
 	SDL_Rect bounds_{ 0, 0, 0, 0 };
-	DoubleRect* boundsNormalized_{ 0 };
+	DoubleRect* boundsNormalized_{ nullptr };
 	long int hashTag_{ 0 };
 
 	//contents

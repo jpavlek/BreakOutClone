@@ -1,7 +1,7 @@
 #include "QuadTree.h"
 #include "..\Entities\Entity.h"
 
-////-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 QuadTree::QuadTree():
 	root_( 0 )
 {
@@ -10,6 +10,7 @@ QuadTree::QuadTree():
 QuadTree::~QuadTree()
 {
 	//delete root_;
+	//delete bounds_;
 }
 //-------------------------------------------------------------------------------------------
 QuadTree::QuadTree(const SDL_Rect& bounds, int maxDepth):
