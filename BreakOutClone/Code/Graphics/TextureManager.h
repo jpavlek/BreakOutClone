@@ -9,7 +9,7 @@ class TextureManager
 {
 public:
 	static TextureManager* Instance() {
-		if (s_pInstance == 0) {
+		if (s_pInstance == nullptr) {
 			s_pInstance = new TextureManager();
 			return s_pInstance; 
 		}
@@ -18,7 +18,7 @@ public:
 
 	static void ResetInstance() {
 		delete s_pInstance;
-		s_pInstance = NULL;
+		s_pInstance = nullptr;
 	}
 
 	bool loadTexture(std::string fullPathFileName, long id, SDL_Renderer* pRenderer);

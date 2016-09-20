@@ -17,7 +17,7 @@ PlayerProfile::updateScore(std::vector<Entity*> &ent)
 {
 	for (size_t i = 0; i < ent.size(); i++) {
 		Brick* brick = dynamic_cast<Brick*> (ent[i]);
-		if (brick == 0 || brick->id() == 'I') {
+		if (brick == nullptr || brick->id() == 'I') {
 			continue;
 		}
 		if (brick->pointsLeft() <= 0) {

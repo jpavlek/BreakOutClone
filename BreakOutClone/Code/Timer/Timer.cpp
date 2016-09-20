@@ -4,8 +4,8 @@
 const int Timer::FPS = 120;
 const int Timer::DELAY_TIME = (int) (1000.0f / FPS);
 //-------------------------------------------------------------------------------------------
-Timer::Timer()
-:	frameStart_(0),
+Timer::Timer():
+	frameStart_(0),
 	frameEnd_(0),
 	frameTime_(0)
 {

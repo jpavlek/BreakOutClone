@@ -76,6 +76,9 @@
     <Filter Include="Header Files\Timer">
       <UniqueIdentifier>{b754e918-327c-4dfc-b6f2-cc278c1dfa4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Timer">
+      <UniqueIdentifier>{a76fff48-86ef-4801-986f-e762c2920933}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
@@ -144,9 +147,6 @@
     <ClCompile Include="Code\ResourceManager\ResourceManager.cpp">
       <Filter>Source Files\ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Timer\Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Graphics\TextureDescription.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
@@ -171,11 +171,11 @@
     <ClCompile Include="Code\ResourceManager\AudioDescription.cpp">
       <Filter>Source Files\ResourceManager</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Timer\Timer.cpp">
+      <Filter>Source Files\Timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\Main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\TinyXML\tinystr.h">
       <Filter>Header Files\TinyXml</Filter>
     </ClInclude>

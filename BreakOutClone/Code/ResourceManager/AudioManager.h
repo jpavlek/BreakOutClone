@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #include <map>
 #include <string>
 #include <SDL_mixer.h>
@@ -10,7 +8,7 @@ class AudioManager
 {
 public:
 	static AudioManager* Instance() {
-		if (s_pInstance == 0) {
+		if (s_pInstance == nullptr) {
 			s_pInstance = new AudioManager();
 			return s_pInstance;
 		}
@@ -19,15 +17,16 @@ public:
 
 	static void ResetInstance() {
 		delete s_pInstance;
-		s_pInstance = NULL;
+		s_pInstance = nullptr;
 	}
 
-	bool loadSoundEffect(std::string fullPathFileName, long id);
+	~AudioManager();
 	Mix_Chunk* getSoundEffect(long soundEffectId);
 	std::map<long, Mix_Chunk*>* soundEffectsMap() { return &soundEffectsMap_; }
-	~AudioManager();
+	bool loadSoundEffect(std::string fullPathFileName, long id);
+	void playSoundEffect(long soundEffectId);
 private:
-	std::map<long, Mix_Chunk*> soundEffectsMap_;
-	AudioManager() {}
 	static AudioManager* AudioManager::s_pInstance;
+	AudioManager() {}
+	std::map<long, Mix_Chunk*> soundEffectsMap_;
 };

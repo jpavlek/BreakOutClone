@@ -4,7 +4,6 @@
 #include <algorithm>
 #include "..\Game\Game.h"
 
-
 //-------------------------------------------------------------------------------------------
 Ball::Ball():
 	Entity("Ball") {
@@ -239,7 +238,7 @@ Ball::checkBrickCollision(Brick* brick)
 int
 Ball::resolveBrickCollision(Brick* brick)
 {
-	if (brick == 0) {
+	if (brick == nullptr) {
 		return -1;
 	}
 	int xMin = std::max(posX(), brick->posX());
@@ -302,7 +301,7 @@ Ball::update()
 		QuadTree* quadTree = owner_->getQuadTree();
 		TreeNode* ballCollisionLocNode = quadTree->locateEntityPositionInQuadTree(this);
 		owner_->setBallCollisionLocationNode(ballCollisionLocNode);
-		if (ballCollisionLocNode == 0) {
+		if (ballCollisionLocNode == nullptr) {
 			return;
 		}
 		std::vector<Entity*> ent = ballCollisionLocNode->retrieveEntities();

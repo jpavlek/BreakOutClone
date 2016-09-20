@@ -1,13 +1,15 @@
 #pragma once
+
 class Game;
 
 class InputEventHandler {
 public:
 	InputEventHandler(Game* game);
 	InputEventHandler();
-	virtual bool handleInputEvents() = 0;
-	Game* game() { return game_; }
 	virtual ~InputEventHandler() {};
+	Game* game() { return game_; }
+	virtual bool handleInputEvents() = 0;
+	
 private:
 	Game* game_;
 };

@@ -15,9 +15,6 @@ Brick::Brick():
 	breakScore_(0),
 	pointsLeft_(0)
 {
-	if (brickHitSoundEffect_ == 0) {
-		int a = 0;
-	}
 }
 //-------------------------------------------------------------------------------------------
 Brick::Brick(int x, int y, int w, int h, char brickId, const char* txtureName, const char* hitSndName, const char* breakSndName, int hitPnts, int breakScr, long textureId, SDL_Texture* texture, Mix_Chunk* brickHitSnd, Mix_Chunk* brickBrokenSnd):
@@ -32,9 +29,6 @@ Brick::Brick(int x, int y, int w, int h, char brickId, const char* txtureName, c
 	brickHitSoundEffect_(brickHitSnd),
 	brickBrokenSoundEffect_(brickBrokenSnd)
 {
-	if (brickHitSoundEffect_ == 0) {
-		int a = 0;
-	}
 }
 //-------------------------------------------------------------------------------------------
 Brick::~Brick() {
@@ -58,7 +52,7 @@ Brick::decreasePointsLeft() {
 void
 Brick::playHitSound()
 {
-	if (brickHitSoundEffect_ == 0) {
+	if (brickHitSoundEffect_ == nullptr) {
 		printf("No brick hit sound effect to play.\n");
 		return;
 	}

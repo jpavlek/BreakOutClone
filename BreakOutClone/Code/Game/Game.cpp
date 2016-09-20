@@ -24,9 +24,9 @@ Game::Game():
 	inputHandler_ (new SDLInputEventHandler(this) ),
 	resourceManager_( new ResourceManager() )
 #else
-	graphics_(0),
-	inputHandler_(0),
-	resourceManager_(0)
+	graphics_(nullptr),
+	inputHandler_(nullptr),
+	resourceManager_(nullptr)
 #endif // SDL_GRAPHICS
 {
 }
@@ -66,8 +66,6 @@ Game::init() {
 
 	bool soundEffectsLoaded = initSDLSoundMixer();
 
-	//TODO: load sound effects	soundEffectsMap_[1] = 
-
 	graphics_->setBackgroundColor(248, 248, 248, 255);
 
 	if (graphicsLoaded) {
@@ -102,15 +100,17 @@ Game::render() {
 	
 	for (size_t i = 0; i < gameObjects_.size(); i++) {
 		Entity* object = gameObjects_[i];
-		if (object == 0) {
+		if (object == nullptr) {
 			continue;
 		}
 		object->render(sdlRenderer);
 	}
+	/*
 	quadTree_->render(sdlRenderer);
 	if (ballCollisionLocationNode_) {
 		ballCollisionLocationNode_->debugRender(sdlRenderer, 255, 0, 0, 255);
 	}
+	*/
 	SDL_RenderPresent(sdlRenderer); // draw to the screen 
 }
 //-------------------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ Game::update()
 		//paddle_->move();
 		for (size_t i = 0; i < gameObjects_.size(); i++) {
 			Entity* object = gameObjects_[i];
-			if (object == 0) {
+			if (object == nullptr) {
 				continue;
 			}
 			object->update();
@@ -314,9 +314,9 @@ Game::loadLevel(int level) {
 		int offsetX = -1;
 		int brickCounter = -1;
 		int miss = 0;
-		SDL_Texture* brickTexture = NULL;
-		Mix_Chunk* brickHitSound = NULL;
-		Mix_Chunk* brickBrokenSound = NULL;
+		SDL_Texture* brickTexture = nullptr;
+		Mix_Chunk* brickHitSound = nullptr;
+		Mix_Chunk* brickBrokenSound = nullptr;
 		bricks_.resize(brickWallString.size());
 		SDL_Rect wallBoundaries{ -1, -1, -1, -1 };
 		int destroyableBricks = 0;
@@ -361,9 +361,6 @@ Game::loadLevel(int level) {
 				continue;
 				break;
 			}
-			/*if (brickTypeId == '_') {
-				continue;
-			}*/
 			int x = ( offsetX % columns ) * BRICK_WIDTH;
 			int y = ( offsetX / columns ) * BRICK_HEIGHT;
 			int w = BRICK_WIDTH;
@@ -433,7 +430,7 @@ Game::createFontThroughResourceManager(std::string fullPathFontFileName)
 	long fontId = resourceManager_->addFont(fullPathFontFileName, sdlRenderer);
 	TTF_Font* font = resourceManager_->getFont(fontId);
 	
-	if (font == 0) {
+	if (font == nullptr) {
 		printf("Failed to load the font! SDL_ttf Error: %s\n", TTF_GetError());
 	}
 
@@ -448,7 +445,7 @@ Game::createSoundEffectThroughResourceManager(std::string fullPathSFXFileName)
 	long sfxId = resourceManager_->addSoundEffect(fullPathSFXFileName);
 	Mix_Chunk* sfx = resourceManager_->getSoundEffect(sfxId);
 
-	if (sfx == 0) {
+	if (sfx == nullptr) {
 		printf("Failed to load sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
 
@@ -509,7 +506,7 @@ Game::loadSoundEffect(std::string soundEffectPathFileName)
 {
 	bool soundEffectFileLoaded = true;
 	Mix_Chunk* soundEffect = Mix_LoadWAV( soundEffectPathFileName.c_str() );
-	if (soundEffect == 0) {
+	if (soundEffect == nullptr) {
 		printf("Failed to load low sound effect! SDL_mixer Error: %s\n", Mix_GetError());
 		soundEffectFileLoaded = false;
 	}
@@ -540,10 +537,10 @@ Game::clearLevel()
 {
 	quadTree_->clear();
 	delete brickWall_;
-	brickWall_ = 0;
+	brickWall_ = nullptr;
 	for (int i = bricks_.size() - 1; i >= 0; i--) {
 		delete bricks_[i];
-		bricks_[i] = 0;
+		bricks_[i] = nullptr;
 		bricks_.erase(bricks_.begin() + i);
 	}
 	gameObjects_.clear();
@@ -617,4 +614,5 @@ Game::replaceGameObject(Entity* newEntity)
 		gameObjects_.push_back(newEntity);
 	}
 }
+//-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------

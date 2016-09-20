@@ -8,5 +8,4 @@ const int MAX_VEL_X = 20;
 class PaddleDescription: public EntityDescription {
 public:
 	void setDefaultValues();
-
 };

@@ -52,5 +52,5 @@ protected:
 	int velX_{ 0 };
 	int velY_{ 0 };
 	long textureId_{ 0 };
-	SDL_Texture* texture_{ NULL };
+	SDL_Texture* texture_{ nullptr };
 };

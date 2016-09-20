@@ -7,14 +7,14 @@ EntityDescription::setInitialConditions(int x, int y, int w, int h, int velX, in
 	setVelocity(velX, velY);
 }
 //-------------------------------------------------------------------------------------------
-EntityDescription::EntityDescription()
-	:	positionX_(-1),
-		positionY_(-1),
-		width_(-1),
-		height_(-1),
-		velocityX_(-1),
-		velocityY_(-1),
-		texture_(NULL)
+EntityDescription::EntityDescription():
+	positionX_(-1),
+	positionY_(-1),
+	width_(-1),
+	height_(-1),
+	velocityX_(-1),
+	velocityY_(-1),
+	texture_(nullptr)
 {
 }
 EntityDescription::~EntityDescription()

@@ -1,11 +1,8 @@
 #pragma once
+
 #include "Graphics.h"
-
-/*struct SDL_Surface;
-struct SDL_Window;
-struct SDL_Renderer;*/
-
 #include <SDL.h>
+
 class SDLGraphics: public Graphics
 {
 public:

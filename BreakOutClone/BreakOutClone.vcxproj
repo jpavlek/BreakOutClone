@@ -136,7 +136,6 @@
     <ClInclude Include="Code\Graphics\TextureManager.h" />
     <ClInclude Include="Code\InputEvents\InputEventHandler.h" />
     <ClInclude Include="Code\InputEvents\SDLInputEventHandler.h" />
-    <ClInclude Include="Code\Main.h" />
     <ClInclude Include="Code\ResourceManager\AudioDescription.h" />
     <ClInclude Include="Code\ResourceManager\AudioManager.h" />
     <ClInclude Include="Code\ResourceManager\ResourceManager.h" />

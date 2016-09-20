@@ -8,8 +8,8 @@
 //-------------------------------------------------------------------------------------------
 SDLGraphics::SDLGraphics()
 	: Graphics("SDLGraphics"),
-	sdlWindow_(0),
-	sdlRenderer_(0)
+	sdlWindow_(nullptr),
+	sdlRenderer_(nullptr)
 {
 }
 //-------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ SDLGraphics::initSDL()
 	//Create SDLwindow
 	sdlWindow_ = SDL_CreateWindow("Breakout Clone", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	
-	if (sdlWindow_ == NULL) {
+	if (sdlWindow_ == nullptr) {
 		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		return SDL_init_status;
 	}
@@ -60,17 +60,17 @@ SDLGraphics::initSDL()
 SDL_Texture*
 SDLGraphics::loadTexture(std::string path)
 {
-	SDL_Texture* newTexture = NULL;
+	SDL_Texture* newTexture = nullptr;
 
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 
-	if (loadedSurface == NULL) {
+	if (loadedSurface == nullptr) {
 		printf("Unable to load image %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
 		return newTexture;
 	}
 
 	newTexture = SDL_CreateTextureFromSurface(sdlRenderer_, loadedSurface);
-	if (newTexture == NULL)
+	if (newTexture == nullptr)
 	{
 		printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
 	}
@@ -87,10 +87,10 @@ SDLGraphics::closeSDL()
 {
 	//Destroy window
 	SDL_DestroyWindow(sdlWindow_);
-	sdlWindow_ = NULL;
+	sdlWindow_ = nullptr;
 
 	SDL_DestroyRenderer(sdlRenderer_);
-	sdlRenderer_ = NULL;
+	sdlRenderer_ = nullptr;
 
 	//Quit SDL subsystems
 	SDL_Quit();

@@ -2,8 +2,8 @@
 #include "..\Graphics\GraphicsProperties.h"
 
 //-------------------------------------------------------------------------------------------
-BallDescription::BallDescription()
-	:EntityDescription()
+BallDescription::BallDescription():
+	EntityDescription()
 {
 }
 BallDescription::~BallDescription()

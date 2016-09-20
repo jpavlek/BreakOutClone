@@ -24,6 +24,6 @@ private:
 	int hitPoints_{ 0 };
 	int breakScore_{ 0 };
 	int pointsLeft_{ 0 };
-	Mix_Chunk* brickHitSoundEffect_{ 0 };
-	Mix_Chunk* brickBrokenSoundEffect_{ 0 };
+	Mix_Chunk* brickHitSoundEffect_{ nullptr };
+	Mix_Chunk* brickBrokenSoundEffect_{ nullptr };
 };

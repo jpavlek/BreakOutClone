@@ -2,6 +2,25 @@
 
 AudioManager* AudioManager::s_pInstance = 0;
 //-------------------------------------------------------------------------------------------
+AudioManager::~AudioManager()
+{
+	for (auto it = soundEffectsMap_.begin(); it != soundEffectsMap_.end(); ) {
+		Mix_FreeChunk(it->second);
+		soundEffectsMap_.erase(it++);
+	}
+}
+//-------------------------------------------------------------------------------------------
+Mix_Chunk*
+AudioManager::getSoundEffect(long soundEffectId)
+{
+	std::map<long, Mix_Chunk*>::const_iterator it = soundEffectsMap_.find(soundEffectId);
+	if (it != soundEffectsMap_.end()) {
+		return soundEffectsMap_[soundEffectId];
+	}
+	return 0;
+
+}
+//-------------------------------------------------------------------------------------------
 bool
 AudioManager::loadSoundEffect(std::string fullPathFileName, long id)
 {
@@ -16,23 +35,14 @@ AudioManager::loadSoundEffect(std::string fullPathFileName, long id)
 	return false;
 }
 //-------------------------------------------------------------------------------------------
-Mix_Chunk*
-AudioManager::getSoundEffect(long soundEffectId)
+void
+AudioManager::playSoundEffect(long soundEffectId)
 {
-	std::map<long, Mix_Chunk*>::const_iterator it = soundEffectsMap_.find(soundEffectId);
-	if (it != soundEffectsMap_.end()) {
-		return soundEffectsMap_[soundEffectId];
+	Mix_Chunk* sfx = getSoundEffect(soundEffectId);
+	if (sfx == nullptr) {
+		return;
 	}
-	return 0;
-
-}
-//-------------------------------------------------------------------------------------------
-AudioManager::~AudioManager()
-{
-	for (auto it = soundEffectsMap_.begin(); it != soundEffectsMap_.end(); ) {
-		Mix_FreeChunk(it->second);
-		soundEffectsMap_.erase(it++);
-	}
+	Mix_PlayChannel(-1, sfx, 0);
 }
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------

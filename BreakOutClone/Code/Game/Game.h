@@ -35,7 +35,7 @@ public:
 	~Game();
 	
 	// getters
-	bool running() { return running_; }
+	bool				running() { return running_; }
 	ResourceManager*	resourceManager() { return resourceManager_; }
 	Paddle*				paddle() { return paddle_; }
 	Ball*				ball() { return ball_; }
@@ -79,29 +79,29 @@ public:
 	void replaceGameObject(Entity* newEntity);
 private:
 	bool running_{ false };
-	Graphics* graphics_{ 0 };
-	InputEventHandler* inputHandler_{ 0 };
-	ResourceManager* resourceManager_{ 0 };
-	Entity* background_{ 0 };
-	Paddle* paddle_{ 0 };
-	Ball* ball_{ 0 };
-	Timer* timer_{ 0 };
+	Graphics* graphics_{ nullptr };
+	InputEventHandler* inputHandler_{ nullptr };
+	ResourceManager* resourceManager_{ nullptr };
+	Entity* background_{ nullptr };
+	Paddle* paddle_{ nullptr };
+	Ball* ball_{ nullptr };
+	Timer* timer_{ nullptr };
 	std::map<char, BrickType> brickTypesMap_;
 	std::vector<Brick*> bricks_;
-	BrickWall* brickWall_{ 0 };
-	QuadTree* quadTree_{ 0 };
-	TreeNode* ballCollisionLocationNode_{ 0 };
-	PlayerProfile* playerProfile_{ 0 };
+	BrickWall* brickWall_{ nullptr };
+	QuadTree* quadTree_{ nullptr };
+	TreeNode* ballCollisionLocationNode_{ nullptr };
+	PlayerProfile* playerProfile_{ nullptr };
 	GameState gameState_{ GameState::WAIT_TO_START };
-	Entity* livesText_{ 0 };
-	Entity* scoreText_{ 0 };
+	Entity* livesText_{ nullptr };
+	Entity* scoreText_{ nullptr };
 	FontDescription fontDescription_{ 0, 0 };
 	TextureDescription livesTextureDesc_{ 0, 0 };
 	TextureDescription scoreTextureDesc_{ 0, 0 };
 	SDL_Color textColor_{ 0, 0, 0, 0 };
 	std::map<long, Mix_Chunk*> soundEffectsMap_;
 	int level_{ 0 };
-	int maxLevel_{ 5 };
+	int maxLevel_{ 8 };
 	std::vector<Entity*> gameObjects_;
 };
 

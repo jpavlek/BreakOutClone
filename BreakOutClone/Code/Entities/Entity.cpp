@@ -12,7 +12,7 @@ Entity::Entity(char* entityName):
 }
 //-------------------------------------------------------------------------------------------
 Entity::Entity(char* entityName, int x, int y, int w, int h)
-	: Entity(entityName, x, y, w, h, 0, 0, 0L, NULL)
+	: Entity(entityName, x, y, w, h, 0, 0, 0L, nullptr)
 {
 }
 //-------------------------------------------------------------------------------------------

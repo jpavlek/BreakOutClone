@@ -1,8 +1,9 @@
-//Abstract base class for Graphics
 #pragma once
+
 #include <vector>
 #include "TextureManager.h"
 
+//Abstract base class for Graphics
 class Graphics {
 public:
 	Graphics();

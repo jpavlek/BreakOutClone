@@ -20,6 +20,6 @@ public:
 	int height_{ -1 };
 	int velocityX_{ 0 };
 	int velocityY_{ 0 };
-	SDL_Texture* texture_{ NULL };
+	SDL_Texture* texture_{ nullptr };
 	long textureId_{ 0 };
 };

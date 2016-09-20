@@ -41,7 +41,7 @@ public:
 	void setDiameter(int diameter);
 private:
 	int diameter_{ 0 };
-	Game* owner_{ 0 };
+	Game* owner_{ nullptr };
 	
 };
 //-------------------------------------------------------------------------------------------

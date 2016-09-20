@@ -18,6 +18,36 @@ ResourceManager::~ResourceManager()
 	AudioManager::ResetInstance();
 }
 //-------------------------------------------------------------------------------------------
+SDL_Texture*
+ResourceManager::getTexture(long textureId)
+{
+	if (textureManager_ == nullptr) {
+		return nullptr;
+	}
+
+	return textureManager_->getTexture(textureId);	
+}
+//-------------------------------------------------------------------------------------------
+TTF_Font*
+ResourceManager::getFont(long fontId)
+{
+	if (textureManager_ == nullptr) {
+		return nullptr;
+	}
+
+	return textureManager_->getFont(fontId);
+}
+//-------------------------------------------------------------------------------------------
+Mix_Chunk*
+ResourceManager::getSoundEffect(long sfxId)
+{
+	if (audioManager_ == nullptr) {
+		return nullptr;
+	}
+
+	return audioManager_->getSoundEffect(sfxId);
+}
+//-------------------------------------------------------------------------------------------
 long 
 ResourceManager::addTexture(std::string fullPathTextureFileName, SDL_Renderer* pRenderer)
 {
@@ -59,24 +89,6 @@ ResourceManager::addSoundEffect(std::string fullPathSFXFileName)
 		printf("Failed to add sound effect \'%s\' to resource manager! SDL_mixer Error: %s\n", fullPathSFXFileName.c_str(), Mix_GetError());
 	}
 	return sfxCount_;
-}
-//-------------------------------------------------------------------------------------------
-SDL_Texture*
-ResourceManager::getTexture(long textureId)
-{
-	return textureManager_->getTexture(textureId);
-}
-//-------------------------------------------------------------------------------------------
-TTF_Font*
-ResourceManager::getFont(long fontId)
-{
-	return textureManager_->getFont(fontId);
-}
-//-------------------------------------------------------------------------------------------
-Mix_Chunk*
-ResourceManager::getSoundEffect(long sfxId)
-{
-	return audioManager_->getSoundEffect(sfxId);
 }
 //-------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
