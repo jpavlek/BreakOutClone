@@ -7,9 +7,9 @@ TreeNode::TreeNode():
 	bounds_( {0, 0, 0, 0} ),
 	depth_(0),
 	parentNode_(nullptr),
-	isLeaf_(true)
+	isLeaf_(true),
+	boundsNormalized_(new DoubleRect(0.0, 0.0, 0.0, 0.0) )
 {
-	boundsNormalized_ = new DoubleRect(0.0, 0.0, 0.0, 0.0);
 }
 //-------------------------------------------------------------------------------------------
 TreeNode::TreeNode(const SDL_Rect &bounds, QuadTree* owner, int depth, TreeNode* parentNode):
@@ -36,6 +36,12 @@ TreeNode::~TreeNode()
 		subNodes_[i] = 0;
 	}
 	delete boundsNormalized_;
+	for (size_t i = 0; i < subNodes_.size(); i++) {
+		if (subNodes_[i] != nullptr) {
+			delete subNodes_[i];
+			subNodes_[i] = nullptr;
+		}
+	}
 }
 //-------------------------------------------------------------------------------------------
 bool 

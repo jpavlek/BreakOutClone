@@ -9,8 +9,8 @@ QuadTree::QuadTree():
 //-------------------------------------------------------------------------------------------
 QuadTree::~QuadTree()
 {
-	//delete root_;
-	//delete bounds_;
+	delete root_;
+	delete bounds_;
 }
 //-------------------------------------------------------------------------------------------
 QuadTree::QuadTree(const SDL_Rect& bounds, int maxDepth):
